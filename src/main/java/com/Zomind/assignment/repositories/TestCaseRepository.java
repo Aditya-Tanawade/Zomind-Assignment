@@ -3,13 +3,11 @@ package com.Zomind.assignment.repositories;
 import com.Zomind.assignment.entities.TestCaseEntity;
 import com.Zomind.assignment.entities.enums.Priority;
 import com.Zomind.assignment.entities.enums.Status;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface TestCaseRepository extends JpaRepository<TestCaseEntity, Long> {
+import java.util.List;
 
-    Page<TestCaseEntity> findAllByStatusAndPriority(Status status, Priority priority, Pageable pageable);
-
+public interface TestCaseRepository extends MongoRepository<TestCaseEntity, String> {
+    List<TestCaseEntity> findAllByStatusAndPriority(Status status, Priority priority, Pageable pageable);
 }

@@ -17,28 +17,19 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * Handle EntityNotFoundException.
-     * This is a common exception for entity retrieval failures in JPA.
-     */
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleEntityNotFoundException(EntityNotFoundException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND, "Not Found");
     }
 
-    /**
-     * Handle ResourceNotFoundException.
-     * Custom exception for resource retrieval failures.
-     */
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(ResourceNotFoundException ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND, "Not Found");
     }
 
-    /**
-     * Handle validation errors (e.g., @Valid or @Validated annotations).
-     * This captures and formats field-specific validation errors.
-     */
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationException(MethodArgumentNotValidException ex) {
         Map<String, Object> errors = new HashMap<>();
@@ -54,10 +45,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    /**
-     * Handle HttpMessageNotReadableException.
-     * This typically occurs during JSON parsing errors, such as invalid enum values.
-     */
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Map<String, String>> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
         Throwable cause = ex.getCause();
@@ -86,9 +74,7 @@ public class GlobalExceptionHandler {
         return buildSimpleErrorResponse("Invalid request payload", HttpStatus.BAD_REQUEST);
     }
 
-    /**
-     * Helper method to build an error response with detailed information.
-     */
+
     private ResponseEntity<Map<String, Object>> buildErrorResponse(String message, HttpStatus status, String errorType) {
         Map<String, Object> response = new HashMap<>();
         response.put("message", message);
@@ -98,9 +84,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, status);
     }
 
-    /**
-     * Helper method to build a simple error response.
-     */
+
     private ResponseEntity<Map<String, String>> buildSimpleErrorResponse(String message, HttpStatus status) {
         Map<String, String> response = new HashMap<>();
         response.put("error", message);

@@ -38,7 +38,7 @@ class TestCaseServiceTest {
     @Test
     void getAllTestCases_ShouldReturnAllTestCases() {
         TestCaseEntity testCase = new TestCaseEntity();
-        testCase.setId(1L);
+        testCase.setId("1");
         when(testCaseRepo.findAll()).thenReturn(List.of(testCase));
         when(modelMapper.map(any(TestCaseEntity.class), eq(TestCaseResponseDTO.class)))
                 .thenReturn(new TestCaseResponseDTO());
@@ -52,8 +52,8 @@ class TestCaseServiceTest {
 
     @Test
     void findTestCaseById_ShouldThrowExceptionIfNotFound() {
-        when(testCaseRepo.findById(1L)).thenReturn(Optional.empty());
-        assertThrows(ResourceNotFoundException.class, () -> testCaseService.findTestCaseById(1L));
+        when(testCaseRepo.findById("1")).thenReturn(Optional.empty());
+        assertThrows(ResourceNotFoundException.class, () -> testCaseService.findTestCaseById("1"));
     }
 
     @Test
