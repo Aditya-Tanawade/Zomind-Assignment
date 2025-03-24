@@ -53,7 +53,7 @@ This project is a Test Case Management System built using **Spring Boot** and **
 
 1. **Clone the Repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Aditya-Tanawade/Zomind-Assignment.git
    ```
 
 2. **Navigate to Project Directory**:
@@ -72,7 +72,7 @@ This project is a Test Case Management System built using **Spring Boot** and **
    ```
 
 5. **Access the Application**:
-   - Open your browser and navigate to: `http://localhost:8080/api/testcases`
+   - Open your Postman and navigate to: `http://localhost:8080/api/testcases`
 
 ---
 
